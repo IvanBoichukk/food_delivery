@@ -246,7 +246,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const object = {};
             formData.forEach(function (value, key) {
-            object[key] = value;
+                object[key] = value;
             });
 
             fetch('server.php', {
@@ -255,15 +255,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-type': 'multipart/form-data'
                 }
-                }).then(data => {
-                    console.log(data);
-                    showThanksModal(message.success);
-                    statusMessage.remove();
-                }).catch(() => {
-                    showThanksModal(message.failure);
-                }).finally(() => {
-                    form.reset();
-                });
+            }).then(data => {
+                console.log(data);
+                showThanksModal(message.success);
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
+            });
         });
     }
 
@@ -290,4 +290,7 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 3000);
     }
+    fetch('http://localhost:3000/menu')
+        .then(data => data.json())
+        .then(res => console.log(res));
 });
