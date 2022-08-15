@@ -81,7 +81,7 @@ function slider() {
     }
 
     function deleteNotDigits(str) {
-        return +str.replace(/\D/g, '');
+        return +str.slice(0, str.length - 2);
     }
 
     next.addEventListener('click', () => {
