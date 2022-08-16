@@ -1,10 +1,12 @@
-import {closeModal, openModal} from './modal';
+import { openModal, closeModal} from './modal';
 
-function forms(modalTimerId) {
+import { postData } from '../services/services';
+
+function forms(formSelector, modalTimerId) {
 
     //Forms XMLHttpRequest
 
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll(formSelector);
 
     const message = {
         loading: 'img/form/spinner.svg',
@@ -15,18 +17,6 @@ function forms(modalTimerId) {
     forms.forEach(item => {
         BindPostData(item);
     });
-
-    const postData = async (url, data) => {
-        const res = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: data
-        });
-
-        return await res.json();
-    };
 
     function BindPostData(form) {
         form.addEventListener('submit', (e) => {
@@ -68,8 +58,8 @@ function forms(modalTimerId) {
         thanksModal.classList.add('modal__dialog');
         thanksModal.innerHTML = `
             <div class="modal__content">
-                < div class = "modal__close" data-close>×</div> 
-                <div class="modal__title" >${message}</div>
+                <div class="modal__close" data-close>×</div> 
+                <div class="modal__title">${message}</div>
             </div>
         `;
 
